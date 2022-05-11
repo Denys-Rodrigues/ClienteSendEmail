@@ -1,6 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<ClienteSendEmail.Data.AppCont>(options =>
+{
+    options.UseSqlServer(builder
+        .Configuration
+        .GetConnectionString("DBClienteSend"));
+});
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
